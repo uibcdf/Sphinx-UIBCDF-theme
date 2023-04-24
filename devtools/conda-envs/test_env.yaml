@@ -1,0 +1,14 @@
+channels:
+- conda-forge
+- default
+dependencies:
+- python
+- pytest
+- pip
+- pytest-cov
+- pytest-regressions
+- codecov
+- beautifulsoup4
+- coverage
+- myst-nb
+- sphinx_thebe

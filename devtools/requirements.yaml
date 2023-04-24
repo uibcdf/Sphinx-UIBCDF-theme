@@ -1,0 +1,81 @@
+setup:
+  channels: &setup_channels
+    - conda-forge
+    - default
+  dependencies: &setup_dependencies
+    - python
+    - sphinx-theme-builder >= 0.2.0a7
+    - versioningit~=2.0
+
+production:
+  channels: &production_channels
+    - *setup_channels
+  dependencies: &production_dependencies
+    - python
+
+test:
+  channels: &test_channels
+    - *production_channels
+  dependencies: &test_dependencies
+    - *production_dependencies
+    - pytest
+    - pip
+    - pytest-cov
+    - pytest-regressions
+    - codecov
+    - beautifulsoup4
+    - coverage
+    - myst-nb
+    - sphinx_thebe
+
+docs:
+  channels: &docs_channels
+    - *production_channels
+  dependencies: &docs_dependencies
+    - *production_dependencies
+    - sphinx
+    - sphinx_rtd_theme
+    - sphinxcontrib-bibtex
+    - sphinx-remove-toctrees
+    - sphinx-copybutton
+    - myst-nb
+
+development:
+  channels:
+    - *production_channels
+  dependencies:
+    - *production_dependencies
+    - *test_dependencies
+    - *docs_dependencies
+    - jupyterlab
+    - pyyaml
+    - mamba
+    - ablog
+    - ipywidgets
+    - folium
+    - numpy
+    - matplotlib
+    - numpydoc
+    - myst-nb
+    - nbclient
+    - pandas
+    - plotly
+    - sphinx-design
+    - sphinx-examples
+    - sphinx-copybutton
+    - sphinx-tabs<=3.4.0 # sphinx-tabs 3.4.1 needs docutils >.17, which would conflict with our pin above
+    - docutils==0.17.1 # docutils 0.18, 0.19 need a patch fix https://sourceforge.net/p/docutils/patches/195/, un-pin when 0.20 is released
+    - sphinx-togglebutton
+    - sphinx-thebe
+    - sphinxcontrib-bibtex
+    - sphinxcontrib-youtube
+    - sphinxext-opengraph
+conda-build:
+  channels:
+    - *setup_channels
+  dependencies:
+    - *setup_dependencies
+    - anaconda-client
+    - conda-build
+    - boa
+

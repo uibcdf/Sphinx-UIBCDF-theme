@@ -1,0 +1,103 @@
+[build-system]
+requires = ["sphinx-theme-builder >= 0.2.0a7", "versioningit~=2.0"]
+build-backend = "sphinx_theme_builder"
+
+[tool.sphinx-theme-builder]
+node-version = "16.13.2"
+theme-name = "sphinx_uibcdf_theme"
+additional-compiled-static-assets = [
+  "locales/"
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
+
+[project]
+name = "sphinx-uibcdf-theme"
+description = "Sphinx UIBCDF theme"
+dynamic = ["version"]
+readme = "README.md"
+authors = [
+    { name = "UIBCDF Lab", email = "uibcdf@gmail.com" }
+]
+maintainers = [
+    { name = "UIBCDF Lab", email = "uibcdf@gmail.com" }
+]
+license = { text = "MIT" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Framework :: Sphinx",
+    "Framework :: Sphinx :: Theme",
+]
+requires-python = "~=3.8,~=3.9"
+dependencies = [
+    "sphinx",
+    "pydata-sphinx-theme>=0.13.3",
+]
+
+[project.urls]
+"Source" = "https://github.com/uibcdf/Sphinx-UIBCDF-theme/"
+"Documentation" = "https://uibcdf.org/Sphinx-UIBCDF-theme"
+
+[project.optional-dependencies]
+code_style = [
+    "pre-commit"
+]
+doc = [
+    "ablog",
+    "ipywidgets",
+    "folium",
+    "numpy",
+    "matplotlib",
+    "numpydoc",
+    "myst-nb",
+    "nbclient",
+    "pandas",
+    "plotly",
+    "sphinx-design",
+    "sphinx-examples",
+    "sphinx-copybutton",
+    "sphinx-tabs<=3.4.0", # sphinx-tabs 3.4.1 needs docutils >.17, which would conflict with our pin above
+    "docutils==0.17.1", # docutils 0.18, 0.19 need a patch fix https://sourceforge.net/p/docutils/patches/195/, un-pin when 0.20 is released
+    "sphinx-togglebutton",
+    "sphinx-thebe",
+    "sphinxcontrib-bibtex",
+    "sphinxcontrib-youtube",
+    "sphinxext-opengraph",
+]
+test = [
+    "beautifulsoup4",
+    "coverage",
+    "myst-nb",
+    "pytest",
+    "pytest-cov",
+    "pytest-regressions",
+    "pytest-runner"
+    "sphinx_thebe",
+]
+
+[project.entry-points]
+"sphinx.html_themes" = { sphinx_uibcdf_theme = "sphinx_uibcdf_theme" }
+
+[tool.versioningit]
+default-version = "1+unknown"
+
+[tool.versioningit.format]
+distance = "{base_version}+{distance}.{vcs}{rev}"
+dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+
+
+[tool.versioningit.vcs]
+# The method key:
+method = "git"  # <- The method name
+# Parameters to pass to the method:
+match = ["*"]
+default-tag = "1.0.0"
+
+[tool.versioningit.write]
+file = "sphinx_uibcdf_theme/src/sphinx_uibdf_theme/_version.py"
+

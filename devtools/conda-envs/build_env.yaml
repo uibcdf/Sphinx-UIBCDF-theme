@@ -1,0 +1,10 @@
+channels:
+- conda-forge
+- default
+dependencies:
+- python
+- sphinx-theme-builder >= 0.2.0a7
+- versioningit~=2.0
+- anaconda-client
+- conda-build
+- boa
